@@ -18,8 +18,14 @@ const Review = () => {
 
   const randomPerson=()=>{
     let randomNumber =  Math.floor(Math.random()*people.length)
+    if(randomNumber===index){
+      randomNumber = index+1
+    }
     console.log(randomNumber)
-
+    //checkPerson(randomNumber)
+    //in order to check the random number doesnt go more than people array
+    setIndex(checkPerson(randomNumber)) 
+    
   }
 
   const nextPerson=()=>{
