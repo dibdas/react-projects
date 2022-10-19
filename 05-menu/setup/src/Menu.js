@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Menu = ({items}) => {
+const Menu = ({itemsmenu}) => {
   return (
     <div className='section-center'>
         <h3>menu component</h3>
-        {items.map((item)=>{
+        {itemsmenu.map((item)=>{
           const{id,title,img,category,price,desc} = item
           return(
             <article key={id} className="menu-item">
