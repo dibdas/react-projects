@@ -9,18 +9,27 @@ import items from './data';
   //const allCategories = new Set(items.map((item)=>item.category)) // set is introduced to get the unique values
 
   // using spread operator to spread out the set data structure and also turning into an array 
+
   const allCategories = ['all',...new Set(items.map((item)=>item.category))]
   
-  console.log(allCategories)
-
 
 function App() {
   const[menu,setMenu]= useState(items)
-  const[categories,setCategories] = useState(allCategories)
+   //const[categories,setCategories] = useState([]) // without using the category state
+
+  const[categories,setCategories] = useState(allCategories) // while using the category state
+
+
+  console.log(allCategories)
 
   const filterItems=(category)=>{
     if(category==='all'){
       setMenu(items)
+
+      // return statement should be there in both cases with state and without state
+      // if return statment not present , after clicking on all no list of menu items will be rendered
+      // hence return statement must be to there all the items should be rendred after clicking on all 
+      return 
     }
     const newItem = items.filter((item)=>
     item.category===category)
@@ -37,7 +46,15 @@ function App() {
         <h2>Our menu</h2>
         <div className='underline'></div>
       </div>
-      <Categories filterItems={filterItems} categories={categories} />
+       {/* without using the category state 
+       <Categories filterItems={filterItems} allCategories={allCategories} /> 
+       without using the category state */}
+         
+       
+       {/*using the category state*/}
+       <Categories filterItems={filterItems} categories={categories} />
+
+
       <Menu itemsmenu={menu}/>
 
     </section>
