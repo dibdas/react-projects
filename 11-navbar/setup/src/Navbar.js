@@ -6,6 +6,29 @@ import logo from './logo.svg'
 const Navbar = () => {
 
   const[showLinks,setShowLinks] = useState(false)
+  const linksContainerRef = useRef(null)
+  const linksRef = useRef(null)
+
+  useEffect(()=>{
+
+    // checking the height for  the links to adjust the height of the height container
+    //const linksHeight =  linksRef.current.getBoundingClientRect() // accesing all the properties
+
+    const linksHeight =  linksRef.current.getBoundingClientRect().height // accessing height out of everything
+    console.log(linksHeight)
+    // as the parent i.e the links-container having the height functionilty which is zero
+    // thats why links container can have the height which is zero .. watch the video a bit 
+    console.log(linksContainerRef.current.getBoundingClientRect().height) 
+
+    if(showLinks){ // that means want to display the links
+      linksContainerRef.current.style.height = `${linksHeight}px`
+    }
+    else{
+      linksContainerRef.current.style.height = 0
+    }
+
+  },[showLinks]) // everytime the showlinks changes runs the function
+
     return (
       <nav>
         <div className="nav-center">
@@ -35,8 +58,8 @@ const Navbar = () => {
  */}
 
           <div className={`${showLinks ? 
-           'link-container show container' :'links-container'}`}>
-                      <ul className='links'>
+           'link-container show container' :'links-container'}`} ref={linksContainerRef}>
+                      <ul className='links' ref={linksRef}>
                       {links.map((link)=>{
                         const{id,url,text} = link
                         return(
