@@ -11,8 +11,13 @@ const Hero = () => {
     <section>
       <h5>hero component</h5>
       <div className='hero-center'>
-        <article>
+        <article className='hero-info'>
+          <h1>Payments infrastructure for the internet</h1>
+          <p>Millions of businesses of all sizes—from startups to large enterprises—use Stripe’s 
+            software and APIs to accept payments, send payouts, and manage their businesses online.
+          </p>
 
+          <button className='btn'>Start now</button>
         </article>
         <article className='hero-images'>
           <img src={phoneImg} className="phone-img" alt="phone"/>
