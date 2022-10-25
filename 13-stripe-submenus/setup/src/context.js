@@ -7,8 +7,10 @@ const AppContext = React.createContext()
 console.log(AppContext)
 
 const AppProvider = ({children}) =>{
-    const[isSideBarOpen,setIsSideBarOpen] = useState(true)
+    const[isSideBarOpen,setIsSideBarOpen] = useState(false)
     const[isSubMenuOpen,setSubmenuOpen] = useState(false)
+    const [location,setLocation] = useState({})
+    const [isPage,isSetPage] = useState({page:"",links:[]})
 
     const openSidebar=()=>{
         setIsSideBarOpen(true)
@@ -19,17 +21,22 @@ const AppProvider = ({children}) =>{
     }
 
 
-    const openSubmenu=()=>{
+    const openSubmenu=(text,coordinates)=>{
+        const page = sublinks.find((link)=>link.page===text) 
+        isSetPage(page)
+        setLocation(coordinates)
         setSubmenuOpen(true)
     }
 
 
     const closeSubmenu=()=>{
-        setSubmenuOpen(true)
+        setSubmenuOpen(false)
     }
    
-    return <AppContext.Provider value={{openSubmenu,openSidebar,
-     closeSubmenu,closeSidebar,isSubMenuOpen,isSideBarOpen}}>{children}</AppContext.Provider>
+    return <AppContext.Provider 
+    value={{openSubmenu,openSidebar,
+     closeSubmenu,closeSidebar,
+     isSubMenuOpen,isSideBarOpen,location,isPage}}>{children}</AppContext.Provider>
 }
 
   const useGlobalContext = () =>{
